@@ -1,0 +1,14 @@
+[
+    {
+        "record_id": "LST-0001",
+        "record_type": "LOST",
+        "item_name": "BOTTLE",
+        "category": "Electronics",
+        "location": "classroom",
+        "date_reported": "2026-11-17",
+        "description": "white blobby earphone case",
+        "contact": "8567234963",
+        "status": "CLAIMED",
+        "date_claimed": "2026-11-17"
+    }
+]
