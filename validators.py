@@ -1,3 +1,4 @@
+# validators.py
 import re
 from datetime import datetime
 from typing import List
@@ -16,13 +17,16 @@ def get_choice(prompt: str, options: List[str]) -> str:
         val = input(prompt).strip()
         if val.upper() in options_upper:
             return options[options_upper.index(val.upper())]
-        print("  [!] Invalid selection. Please choose from the listed options.")
+        print("  [!] Invalid selection. Choose from the listed options.")
 
 def get_valid_date(prompt: str = "Date (YYYY-MM-DD): ") -> str:
     while True:
         val = input(prompt).strip()
         try:
-            datetime.strptime(val, "%Y-%m-%d")
+            parsed = datetime.strptime(val, "%Y-%m-%d")
+            if parsed.date() > datetime.now().date():
+                print("  [!] Date cannot be in the future.")
+                continue
             return val
         except ValueError:
             print("  [!] Invalid date format. Use YYYY-MM-DD (e.g., 2026-11-17).")

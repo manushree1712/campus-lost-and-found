@@ -1,7 +1,7 @@
+# visualizer.py
 from typing import Dict
 
 def generate_charts(summary: Dict, output_file: str = "campus_summary_charts.png") -> bool:
-    """Generates a side-by-side category bar chart and status pie chart."""
     try:
         import matplotlib.pyplot as plt
     except ImportError:
@@ -12,21 +12,30 @@ def generate_charts(summary: Dict, output_file: str = "campus_summary_charts.png
         print("[Visualizer] No records available to plot.")
         return False
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(16, 5))
 
-    # Chart 1: Items by Category
-    categories = list(summary["by_category"].keys())
+    # 1. Category Bar Chart with value labels
+    cats = list(summary["by_category"].keys())
     counts = list(summary["by_category"].values())
-    ax1.bar(categories, counts, color="#2b5c8f")
-    ax1.set_title("Items Reported by Category")
+    bars = ax1.bar(cats, counts, color="#2b5c8f")
+    ax1.set_title("Items by Category")
     ax1.set_ylabel("Count")
     ax1.tick_params(axis="x", rotation=30)
+    ax1.bar_label(bars, padding=2)
 
-    # Chart 2: Open vs. Claimed Status
-    labels = ["Open", "Claimed"]
-    sizes = [summary["open"], summary["claimed"]]
-    ax2.pie(sizes, labels=labels, autopct="%1.1f%%", colors=["#e07a5f", "#81b29a"], startangle=90)
-    ax2.set_title("Resolution Status Breakdown")
+    # 2. Resolution Status Pie Chart
+    ax2.pie([summary["open"], summary["claimed"]], labels=["Open", "Claimed"],
+            autopct="%1.1f%%", colors=["#e07a5f", "#81b29a"], startangle=90)
+    ax2.set_title("Open vs. Claimed Status")
+
+    # 3. Top Hotspot Locations
+    locs = list(summary["by_location"].keys())
+    loc_counts = list(summary["by_location"].values())
+    loc_bars = ax3.barh(locs, loc_counts, color="#3d405b")
+    ax3.set_title("Top Campus Hotspots")
+    ax3.set_xlabel("Reports")
+    ax3.invert_yaxis()
+    ax3.bar_label(loc_bars, padding=3)
 
     plt.tight_layout()
     plt.savefig(output_file)
