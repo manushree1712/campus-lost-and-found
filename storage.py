@@ -70,3 +70,5 @@ def import_from_csv(filepath: str) -> Tuple[List[ItemRecord], List[str]]:
             except Exception as e:
                 errors.append(f"Row {row_num}: {e}")
     return valid_records, errors
+
+"""Crash-safe JSON persistence and CSV import/export handlers."""

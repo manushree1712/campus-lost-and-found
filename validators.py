@@ -39,3 +39,5 @@ def get_valid_contact(prompt: str = "Contact (Email or 10-digit phone): ") -> st
         if re.match(email_pattern, val) or re.match(phone_pattern, val):
             return val
         print("  [!] Enter a valid email address or 10-digit phone number.")
+        
+"""Input validation and sanitization utilities for CLI entries."""

@@ -35,3 +35,5 @@ class ItemRecord:
             status=data.get("status", "OPEN"),
             date_claimed=data.get("date_claimed")
         )
+        
+"""Data models, categories, and serialization for Campus Lost-and-Found Register."""

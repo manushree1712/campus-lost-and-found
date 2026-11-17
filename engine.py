@@ -87,3 +87,5 @@ def compute_summary(records: List[ItemRecord]) -> Dict:
         "by_location": dict(Counter(r.location for r in records).most_common(5)),
         "top_locations": Counter(r.location for r in records).most_common(3),
     }
+    
+"""Core matching, search, claim resolution, and analytics engine."""

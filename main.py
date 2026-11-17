@@ -126,3 +126,11 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    
+if __name__ == "__main__":
+    try:
+        main()
+    except (KeyboardInterrupt, EOFError):
+        print("\nExiting Campus Lost-and-Found Register cleanly.")
+        
+"""Terminal UI, interactive menu loop, and report export for Campus Lost-and-Found Register."""

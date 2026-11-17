@@ -41,3 +41,8 @@ def generate_charts(summary: Dict, output_file: str = "campus_summary_charts.png
     plt.savefig(output_file)
     plt.close()
     return True
+
+"""Chart generation module for Campus Lost-and-Found Register."""
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
